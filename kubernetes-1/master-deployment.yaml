@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    group: example
+spec:
+  selector:
+    app: second-app
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+  labels:
+    group: example
+spec:
+  replicas: 1
+  selector:
+    # matchLabels:
+    #   app: second-app
+    #   tier: backend
+    matchExpressions:
+      - { key: app, values: [second-app, first-app], operator: In }
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: hojipkim/kub-second-app:2
+          imagePullPolicy: Always
