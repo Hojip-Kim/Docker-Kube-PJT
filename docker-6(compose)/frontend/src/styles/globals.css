@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f5f6f8;
+  color: #333;
+  padding-bottom: 70px;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0064ff 0%, #2d7ff9 50%, #4a97fa 100%);
+}
+
+.coin-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.coin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background-color: #0064ff;
+  border-radius: 3px;
+}
+
+.price-up {
+  color: #f6465d;
+}
+
+.price-down {
+  color: #0ecb81;
+}
+
+.toss-button {
+  background: linear-gradient(90deg, #0064ff 0%, #2d7ff9 50%, #4a97fa 100%);
+  box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3);
+}
+
+.toss-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 100, 255, 0.4);
+}
+
+.blur-effect {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.coin-detail-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease;
+  opacity: 0;
+  background-color: #f8f9fa;
+  border-radius: 0 0 12px 12px;
+  margin-top: -12px;
+  z-index: 1;
+  position: relative;
+}
+
+.coin-detail-panel.active {
+  max-height: 300px;
+  opacity: 1;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+.coin-item.active {
+  border-radius: 12px 12px 0 0;
+  z-index: 2;
+}
+
+.mini-chart {
+  height: 60px;
+  width: 100%;
+  position: relative;
+}
+
+.chart-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+  fill: none;
+}
+
+.chart-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: rgba(0, 100, 255, 0.1);
+}
